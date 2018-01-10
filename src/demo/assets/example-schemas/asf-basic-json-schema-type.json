@@ -1,0 +1,288 @@
+{
+  "schema": {
+    "required": [
+      "vehicle"
+    ],
+    "type": "object",
+    "properties": {
+      "vehicle": {
+        "type": "object",
+        "default": {},
+        "required": [
+          "regNumber",
+          "eurotaxDetails",
+          "mileage",
+          "vinNumber",
+          "firstRegistrationDate"
+        ],
+        "properties": {
+          "regNumber": {
+            "type": "string",
+            "title": "numer rejestracyjny"
+          },
+          "vinNumber": {
+            "type": "string",
+            "title": "numer VIN",
+            "minLength": 17,
+            "maxLength": 17,
+            "format": "vin"
+          },
+          "eurotaxDetails": {
+            "type": "object",
+            "required": [
+              "prodYear",
+              "engineCapacity",
+              "seats",
+              "brand",
+              "model",
+              "type",
+              "category"
+            ],
+            "properties": {
+              "prodYear": {
+                "type": "string",
+                "title": "rok produkcji"
+              },
+              "engineCapacity": {
+                "type": "string",
+                "title": "pojemność silnika"
+              },
+              "seats": {
+                "type": "number",
+                "title": "liczba miejsc"
+              },
+              "brand": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "marka"
+                  }
+                }
+              },
+              "model": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "model"
+                  }
+                }
+              },
+              "type": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "typ nadwozia"
+                  }
+                }
+              },
+              "category": {
+                "type": "object",
+                "required": [
+                  "name"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "title": "rodzaj"
+                  }
+                }
+              }
+            }
+          },
+          "mileage": {
+            "type": "string",
+            "title": "przebieg"
+          },
+          "firstRegistrationDate": {
+            "type": "string",
+            "title": "data pierwszej rejestracji"
+          }
+        }
+      }
+    }
+  },
+  "form": [
+    {
+      "key": [
+        "vehicle"
+      ],
+      "title": "vehicle",
+      "required": true,
+      "type": "fieldset",
+      "items": [
+        {
+          "key": [
+            "vehicle",
+            "regNumber"
+          ],
+          "description": "nr rejestracyjny",
+          "title": "numer rejestracyjny",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": [
+            "vehicle",
+            "vinNumber"
+          ],
+          "description": "vin",
+          "title": "vin",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "key": [
+            "vehicle",
+            "eurotaxDetails"
+          ],
+          "description": "eurortax details",
+          "title": "details",
+          "required": true,
+          "type": "fieldset",
+          "items": [
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "brand"
+              ],
+              "description": "marka",
+              "title": "marka",
+              "required": true,
+              "type": "fieldset",
+              "items": [
+                {
+                  "key": [
+                    "vehicle",
+                    "eurotaxDetails",
+                    "brand",
+                    "name"
+                  ],
+                  "description": "marka nazwa",
+                  "title": "marka",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "prodYear"
+              ],
+              "description": "rok produkcji",
+              "title": "rok produkcji",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "engineCapacity"
+              ],
+              "description": "pojemność silnika",
+              "title": "pojemność silnika",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "seats"
+              ],
+              "description": "liczba miejsc",
+              "title": "liczba miejsc",
+              "required": true,
+              "type": "text"
+            },
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "model"
+              ],
+              "description": "model",
+              "title": "model",
+              "required": true,
+              "type": "fieldset",
+              "items": [
+                {
+                  "key": [
+                    "vehicle",
+                    "eurotaxDetails",
+                    "model",
+                    "name"
+                  ],
+                  "description": "model nazwa",
+                  "title": "model",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "key": [
+                "vehicle",
+                "eurotaxDetails",
+                "type"
+              ],
+              "description": "type",
+              "title": "type",
+              "required": true,
+              "type": "fieldset",
+              "items": [
+                {
+                  "key": [
+                    "vehicle",
+                    "eurotaxDetails",
+                    "type",
+                    "name"
+                  ],
+                  "description": "typ nadwozia",
+                  "title": "typ nadwozia",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": [
+            "vehicle",
+            "firstRegistrationDate"
+          ],
+          "description": "data pierwszej rejestracji",
+          "title": "data pierwszej rejestracji",
+          "required": true,
+          "type": "datepicker"
+        },
+        {
+          "key": [
+            "vehicle",
+            "mileage"
+          ],
+          "description": "przebieg",
+          "title": "przebieg",
+          "required": true,
+          "type": "thousands"
+        }
+      ]
+    }
+  ]
+}
