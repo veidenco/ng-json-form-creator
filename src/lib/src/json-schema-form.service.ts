@@ -223,20 +223,33 @@ export class JsonSchemaFormService {
    * @param {ErrorMessages} errors
    */
   buildRemoteError(errors: ErrorMessages) {
-    console.log('errors', errors);
-    this.formGroup.get('vehicle').get('regNumber').setErrors({
-      "capital_letter": "Nieprawidłowy format Testowego pola!"
-    }, { emitEvent: true });
-    // forEach(errors, (value, key) => {
-    //   if (key in this.formGroup.controls) {
-    //     for (const error of value) {
-    //       const err = {};
-    //       err[error['code']] = error['message'];
-    //       console.log(err);
-    //       this.formGroup.get('vehicle').setErrors(err, { emitEvent: true });
-    //     }
-    //   }
-    // });
+    const getDeepEl = (path) => {
+      const paths = path.split("/").filter((p) => !!p);
+
+      let currObj = this.formGroup;
+      for (let path of paths) {
+        currObj = currObj.get(path);
+      }
+
+      return currObj;
+    };
+
+    forEach(errors, (value, key) => {
+      const pathArr = value.dataPath.split("/");
+
+      if (value.keyword === "required") {
+        pathArr.push(value.params.missingProperty);
+      }
+
+      const el = getDeepEl(pathArr.join("/"));
+      
+      el.setErrors({
+        'externalError': value.message         
+      }, {
+        emitEvent: true
+      });
+      
+    });
   }
 
   validateData(newValue: any, updateSubscriptions = true): void {
